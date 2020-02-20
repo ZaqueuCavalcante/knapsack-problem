@@ -1,17 +1,17 @@
 import random    # Para gerar itens aleatórios.
-#from item import Item    # Importa a classe Item do módulo item.
+from item import Item    # Importa a classe Item do módulo item.
 
 # - - - > Configurações iniciais
 
 # Geração aleatória de N_itens, cada qual com determinado valor de peso.
 
-N_itens = 10    # Números de itens a serem gerados.
+n_itens = 10    # Números de itens a serem gerados.
 valor_min = 0    # Valor do objeto mais barato.
 valor_max = 15    # Valor do objeto mais caro.
 peso_min = 0    # Peso do objeto mais leve.
 peso_max = 20    # Peso do objeto mais pesado.
 
-def gera_itens(N_itens, valor_min, valor_max, peso_min, peso_max):
+def gera_itens(n_itens, valor_min, valor_max, peso_min, peso_max):
     """
     Função para gerar um vetor com N_itens, cada qual com valor e peso aleatórios.
     No entanto, valor e peso possuem limites superior e inferior.
@@ -19,7 +19,7 @@ def gera_itens(N_itens, valor_min, valor_max, peso_min, peso_max):
     
     ITENS = []    # Vetor de itens vazio.
     
-    for i in range(0, N_itens):
+    for i in range(0, n_itens):
         valor_aleatorio = random.randint(valor_min, valor_max)
         peso_aleatorio = random.randint(peso_min, peso_max)
         item_gerado = Item(valor_aleatorio, peso_aleatorio)
@@ -27,19 +27,16 @@ def gera_itens(N_itens, valor_min, valor_max, peso_min, peso_max):
         
     return ITENS
 
-TESTE = gera_itens(N_itens, valor_min, valor_max, peso_min, peso_max)
-        
-        
-        
-        
-# Capacity of the knapsack randomized according to number of items
-CAPACITY = 10*len(ITEMS)
+ITENS = gera_itens(n_itens, valor_min, valor_max, peso_min, peso_max)
 
-# Size of initial population filled with some permutation of 0s and 1s
-POP_SIZE = 50
+# Capacidade da mochila, como uma função da quantidade de itens gerados.
+capacidade_mochila = 10*len(ITENS)
 
-# Maximum number of generations the algorithm will run
-GEN_MAX = 200
+# Tamanho inicial da população.
+tamanho_populacao = 50
+
+# Número máximo de gerações.
+n_max_geracoes = 200
 
 # Start initial population with only zeros? If not, random permutation of 0s and 1s will be given
 # Starting with 0s and 1s will generally make you find a good solution faster
