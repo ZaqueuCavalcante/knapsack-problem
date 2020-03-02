@@ -1,4 +1,3 @@
-import random
 import funcoes
 
 # 1 - REPRESENTAÇÃO DE CADA INDIVÍDUO - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - # 
@@ -23,17 +22,33 @@ for i in range(0, quant_objetos):
 
 # 2 - GERAÇÃO DA POPULAÇÃO INICIAL - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-tamanho_populacao = 10    # Tamanho da população.
+tamanho_populacao = 5    # Tamanho da população.
 
 peso_max = 10    # Capacidade máxima de carga, igual para todas as mochilas geradas.
 
 pop = funcoes.gera_populacao_inicial(tamanho_populacao, pesos, peso_max)    # Lista com a população inicial gerada.
 
-print('Valor  peso')
-for i in range(0,tamanho_populacao):
-    valor = calcula_valor_mochila(pop[i], valores)
-    peso = calcula_peso_mochila(pop[i], pesos, peso_max)
-    print(valor, peso)
+print('\n- - - > População inicial: \n')
+funcoes.print_lista(pop)
+
+# 3 - AVALIAÇÃO DA POPULAÇÃO - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+# Feita através de uma função objetivo, que avalia a aptidão do indivíduo (mochila) como solução do problema.
+
+aptidao = funcoes.funcao_objetivo(pop, valores)
+
+print('\n- - - > Valores totais de cada mochila: \n')
+funcoes.print_lista(aptidao)
+
+# As mochilas avaliadas são colocadas em um ranking de valores totais.
+
+ranking = funcoes.gera_ranking(aptidao)
+
+print('\n- - - > Ranking: \n')
+funcoes.print_lista(ranking)
+
+
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 
@@ -44,4 +59,10 @@ def gera_ranking(pop, valores):
 
     tam_pop = len(pop)
     
+
+
+
+
+
+
         

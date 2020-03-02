@@ -30,7 +30,7 @@ def gera_mochila_aleatoria(pesos, peso_max):
             zero_ou_um = random.randint(0, 1)
             mochila_aleatoria.append(zero_ou_um)
 
-        peso_mochila = calcula_peso_mochila(mochila_aleatoria, pesos, peso_max)
+        peso_mochila = calcula_peso_mochila(mochila_aleatoria, pesos)
         
         if ( peso_mochila > peso_max):    # Checa se ela é válida (1) ou inválida (0).
             mochila_valida = 0
@@ -54,8 +54,7 @@ def gera_populacao_inicial(tamanho_populacao, pesos, peso_max):
 
 
 def calcula_valor_mochila(mochila, valores):
-    # Função de custo do problema, a ser maximizada.
-    # Representa a soma dos valores dos objetos presentes na mochila que foi passada como parâmetro.
+    # Calcula a soma dos valores de todos os objetos presentes na mochila.
 
     valor_mochila = 0
     quant_valores = len(valores)
@@ -67,15 +66,42 @@ def calcula_valor_mochila(mochila, valores):
 
     return valor_mochila
 
+
 def print_lista(lista):
     # Printa os elementos de uma lista quebrando linha a cada elemento.
 
     for i in lista:
         print(i, '\n')
+
+
+def funcao_objetivo(pop, valores):
+    # Calcula o valor total de cada mochila da população.
+
+    aptidao = []
+
+    for mochila in pop:
+        valor_total = calcula_valor_mochila(mochila, valores)
+        aptidao.append(valor_total)
+
+    return aptidao
+
+def gera_ranking(aptidao):
+    # Gera uma lista dos indivíduos de valores mais altos até os mais baixos.
+    # Nela, cada inteiro representa uma mochila.
+    # Exemplo: [3,0,1,2]
+        # A mochila 3 da população (quarta mochila na lista pop) é a mais aptada.
+        # A mochila 0 é a segunda mais apta...
+
+    ranking = []
+
+    for i in range(0, len(aptidao)):
+        valor_max = max(aptidao)
+        indice = aptidao.index(valor_max)
+        ranking.append(indice)
+        aptidao[indice] = 0
+
+    return ranking
         
-
-
-
 
 
 
