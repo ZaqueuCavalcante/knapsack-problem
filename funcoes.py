@@ -101,7 +101,23 @@ def gera_ranking(aptidao):
         aptidao[indice] = 0
 
     return ranking
-        
+
+
+def cruzamento(pop, nova_pop):
+    # Realiza o cruzamento entre os pais para formar a próxima população.
+
+    n_objetos = len(nova_pop[0])
+
+    for i in range(0, len(pop)-1):
+        pai = pop[i]
+        mae = pop[i+1]
+        loc_corte = random.randint(1, n_objetos)
+        filho = pai[0:loc_corte] + mae[loc_corte:]
+        nova_pop.append(filho)
+
+    return nova_pop
+
+    
 
 
 
