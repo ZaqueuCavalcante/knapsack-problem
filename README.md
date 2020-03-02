@@ -1,5 +1,4 @@
 # 002-knapsack-problem
-Resolução do Problema da Mochila usando um algortimo genético e Python.
+Resolução do Problema da Mochila usando um algortimo genético em Python.
 
-O paradgima de programação orientada a objetos será utilizado na implementação do algoritmo.
 
