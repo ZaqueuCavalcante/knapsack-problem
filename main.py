@@ -1,94 +1,76 @@
-import funcoes
+# -*- coding: utf-8 -*-
+"""
+Source developed in Python 3.7
+Zaqueu Cavalcante (zaqueudovale@gmail.com) 
+Date: 14/03/2020
+"""
 
-# 1 - REPRESENTAÇÃO DE CADA INDIVÍDUO - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - # 
+from gera_populacao_inicial import gera_populacao_inicial
+from print_lista import print_lista
+from calcula_valor_populacao import calcula_valor_populacao
+from calcula_peso_populacao import calcula_peso_populacao
+from plot_espaco_busca import plot_espaco_busca
+from funcao_objetivo import funcao_objetivo
+from plot_funcao_objetivo import plot_funcao_objetivo
 
-# Lista de objetos que podem ser adicionados à mochila, cada qual com determinado valor e peso.
-# Cada tupla (valor, peso) representa um objeto.
+# 1 - REPRESENTAÇÃO DE CADA INDIVÍDUO - - - - - - - - - - - - - - - - - - - - # 
 
-objetos = [(10,0.5), (50,1.5), (60,2), (1500,3), (1,2.3), (600,0.2), (5,1.1), (6,2.5), (150,0.3), (80,2), (1,0.02)]
-quant_objetos = len(objetos)
-valores = []
-pesos = []
+# Lista de objetos que podem ser adicionados à mochila, cada qual com 
+# determinado valor e peso.
+# Cada lista [nome, valor, peso] representa um objeto.
+# O valor está em R$ e o peso em kg.
 
-for i in range(0, quant_objetos):
-    valores.append(objetos[i][0])    # Lista com os 'valores' de todos os objetos.
-    pesos.append(objetos[i][1])    # Lista com os 'pesos' de todos os objetos.
+objetos = [['Caneta', 1.5, 0.1], 
+           ['Mouse', 50, 0.2], 
+           ['Caderno', 60, 1.0], 
+           ['Carregador', 100, 0.5], 
+           ['Post-it', 5, 0.1], 
+           ['Livro', 120, 0.6], 
+           ['Notebook', 110, 3.0], 
+           ['Smartphone', 90, 0.4], 
+           ['Garrafa', 30, 1.5], 
+           ['Pen-drive', 80, 0.05], 
+           ['Calculadora', 120, 0.5],
+           ['Pasta', 25, 0.8]]
+
+n_objetos = len(objetos)
+nomes, valores, pesos  = [], [], []
+
+for i in range(0, n_objetos):
+    nomes.append(objetos[i][0])   
+    valores.append(objetos[i][1]) 
+    pesos.append(objetos[i][2])   
 
 # Cada indivíduo será representado através de uma lista, na qual:
     # 0 -> indica que o objeto não está presente na mochila.
     # 1 -> indica que o objeto está presente na mochila.
     # Exemplo de mochila:
-        # m = [1,0,0,0,0,0,0,0,0,1,0] -> apenas o primeiro e o penúltimo objeto está presente na mochila.
+        # m = [1,0,0,0,0,0,0,0,1,0] -> apenas o primeiro e o penúltimo objeto 
+                                       # estão presentes na mochila.
 
-# 2 - GERAÇÃO DA POPULAÇÃO INICIAL - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+# 2 - GERAÇÃO DA POPULAÇÃO INICIAL - - - - - - - - - - - - - - - - - - - - - #
 
-tamanho_populacao = 50    # Tamanho da população.
+tamanho_populacao = 100
+peso_max = 6.5    # Peso máximo de uma mochila válida.
 
-peso_max = 10    # Capacidade máxima de carga, igual para todas as mochilas geradas.
+populacao_inicial = gera_populacao_inicial(tamanho_populacao, n_objetos)
 
-pop = funcoes.gera_populacao_inicial(tamanho_populacao, pesos, peso_max)    # Lista com a população inicial gerada.
+# 3 - AVALIAÇÃO DA APTIDÃO DA POPULAÇÃO INICIAL - - - - - - - - - - - - - - - #
 
-print('\n- - - > População inicial: \n')
-funcoes.print_lista(pop)
+t = 'Espaço de Busca - População Inicial'
+valores_mochilas = calcula_valor_populacao(populacao_inicial, valores)
+pesos_mochilas = calcula_peso_populacao(populacao_inicial, pesos)
+plot_espaco_busca(valores_mochilas, pesos_mochilas, peso_max, t)
 
-# @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ #
+t = 'Função Objetivo - População Inicial'
+aptidoes = funcao_objetivo(valores_mochilas, pesos_mochilas, peso_max)
+plot_funcao_objetivo(valores_mochilas, pesos_mochilas, aptidoes, peso_max, t)
 
-# 3 - CICLO EVOLUTIVO - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+# 4 - CICLO EVOLUTIVO - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-n_geracoes = 1000    # Número máximo de gerações. Critério de parada do algoritmo.
+n_geracoes = 100    # Número máximo de gerações (critério de parada).
 
-for i in range(0, n_geracoes):
 
-    # 4 - AVALIAÇÃO DA POPULAÇÃO - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-
-    # Feita através de uma função objetivo, que avalia a aptidão do indivíduo (mochila) como solução do problema.
-
-    aptidao = funcoes.funcao_objetivo(pop, valores)
-
-    #print('\n- - - > Valores totais de cada mochila: \n')
-    #funcoes.print_lista(aptidao)
-
-    # As mochilas avaliadas são colocadas em um ranking de valores totais.
-
-    ranking = funcoes.gera_ranking(aptidao)
-
-    #print('\n- - - > Ranking: \n')
-    #funcoes.print_lista(ranking)
-
-    # 5 - SELEÇÃO DOS PAIS E CRUZAMENTO - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-
-    # O indivíduo da primeira posição no ranking vai direto para a próxima geração, por elitismo.
-
-    melhor_mochila = ranking[0]
-    nova_pop = []
-    nova_pop.append(pop[melhor_mochila])
-
-    # Os pais que se reproduzirão para formar a próxima população serão selecionados da seguinte forma:
-    # 1° + 2° colocados;
-    # 2° + 3° colocados;
-    # 3° + 4° colocados...
-
-    nova_pop = funcoes.cruzamento(pop, nova_pop)
-
-    #print('\n- - - > Nova população: \n')
-    #funcoes.print_lista(nova_pop)
-
-    # 6 - MUTAÇÃO - - - - - - -
-
-    # Consiste em mudar, aleatoriamente, alguma característica do indivíduo.
-    # No caso, alguns indivíduos (dentro da nova população) serão selecionados. Cada um terá um objeto retirado ou adicionado.]
-
-    # 7 - MONTAGEM DA NOVA POPULAÇÃO
-
-    pop = nova_pop
-
-print('\n- - - > População final: \n')
-funcoes.print_lista(pop)
-
-aptidao = funcoes.funcao_objetivo(pop, valores)
-
-print('\n- - - > Valores totais de cada mochila: \n')
-funcoes.print_lista(aptidao)
 
 
 
