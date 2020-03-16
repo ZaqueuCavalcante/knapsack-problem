@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
 
@@ -8,7 +9,7 @@ def plot_funcao_objetivo(valores_mochilas, pesos_mochilas, aptidoes, peso_max, t
     quadro = figura.add_subplot(1, 1, 1)
     quadro = figura.gca(projection='3d')
     
-    # PLOTAR COM BARRA DE CORES. MAIS ALTO VALOR, MAIS QUENTE/VERMELHO.
+    # PLOTAR COM BARRA DE CORES. MAIS ALTO VALOR, MAIS QUENTE/VERMELHO. TIPO ANSYS.
     
     for i in range(0, len(pesos_mochilas)):
         if (pesos_mochilas[i] <= peso_max):

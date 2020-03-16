@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from calcula_peso_mochila import calcula_peso_mochila
 
 def calcula_peso_populacao(populacao, pesos):

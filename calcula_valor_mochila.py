@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 def calcula_valor_mochila(mochila, valores):
     # Calcula a soma dos valores de todos os objetos presentes na mochila.
 

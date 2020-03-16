@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from calcula_valor_mochila import calcula_valor_mochila
 
 def calcula_valor_populacao(populacao, valores):

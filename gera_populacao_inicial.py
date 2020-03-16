@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from gera_mochila_aleatoria import gera_mochila_aleatoria
 
 def gera_populacao_inicial(tamanho_populacao, n_objetos):

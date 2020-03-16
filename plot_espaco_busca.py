@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 import matplotlib.pyplot as plt
 
 def plot_espaco_busca(valores_mochilas, pesos_mochilas, peso_max, titulo):
     # Plota a população em um gráfico de espalhamento.
     
     plt.rcParams.update({'font.size': 16})
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(6, 4))
     
     for i in range(0, len(pesos_mochilas)):
         if (pesos_mochilas[i] <= peso_max):

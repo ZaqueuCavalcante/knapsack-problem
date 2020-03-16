@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from random import randint
 
 def gera_mochila_aleatoria(n_objetos):

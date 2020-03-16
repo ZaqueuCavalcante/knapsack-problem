@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 def calcula_peso_mochila(mochila, pesos):
     # Calcula o peso da mochila passada como parâmetro.
 
