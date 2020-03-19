@@ -55,7 +55,7 @@ for i in range(0, n_objetos):
 
 # 2 - GERAÇÃO DA POPULAÇÃO INICIAL - - - - - - - - - - - - - - - - - - - - - #
 
-tamanho_populacao = 100
+tamanho_populacao = 25
 peso_max = 6.5    # Peso máximo de uma mochila válida.
 valor_max = sum(valores)    # Valor máximo (mochila com todos os objetos).
 
@@ -66,7 +66,7 @@ populacao_inicial = gera_populacao_inicial(tamanho_populacao, n_objetos)
 t = 'Espaço de Busca - População Inicial'
 valores_mochilas = calcula_valor_populacao(populacao_inicial, valores)
 pesos_mochilas = calcula_peso_populacao(populacao_inicial, pesos)
-plot_espaco_busca(valores_mochilas, pesos_mochilas, peso_max, t)
+plot_espaco_busca(valores_mochilas, pesos_mochilas, peso_max, t, 1)
 
 t = 'Função Objetivo - População Inicial'
 aptidoes = funcao_objetivo(valores_mochilas,pesos_mochilas,valor_max,peso_max)
@@ -75,11 +75,11 @@ aptidoes = funcao_objetivo(valores_mochilas,pesos_mochilas,valor_max,peso_max)
 # 4 - CICLO EVOLUTIVO - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 
 populacao = populacao_inicial
-n_geracoes = 500    # Número máximo de gerações (critério de parada).
+n_geracoes = 26    # Número máximo de gerações (critério de parada).
 prob_mutacao = 5    # Probabilidade de ocorrer mutação, em %.
 taxa_mutacao = 50    # Quantidade de genes que sofrerão mutação, em %.
 
-for geracao in range(0, n_geracoes):
+for geracao in range(2, n_geracoes):
     
     # 5 - RANKING DE APTIDÃO - - - - - - - - - - - - - - - - - - - - - - - - #
     
@@ -112,11 +112,11 @@ for geracao in range(0, n_geracoes):
     
     # Exibir nova população após cruzamento.
     
-    if (geracao % 20 == 0):
-        t = 'Espaço de Busca - Geração ' + str(geracao+1)
-        valores_mochilas = calcula_valor_populacao(nova_populacao, valores)
-        pesos_mochilas = calcula_peso_populacao(nova_populacao, pesos)
-        plot_espaco_busca(valores_mochilas, pesos_mochilas, peso_max, t)
+
+    t = 'Espaço de Busca - Geração ' + str(geracao)
+    valores_mochilas = calcula_valor_populacao(nova_populacao, valores)
+    pesos_mochilas = calcula_peso_populacao(nova_populacao, pesos)
+    plot_espaco_busca(valores_mochilas, pesos_mochilas, peso_max, t, geracao)
     
     
     # Delay...
@@ -131,7 +131,15 @@ for geracao in range(0, n_geracoes):
     
     #nova_populacao_2 = realiza_mutacao(nova_populacao, mutantes, taxa_mutacao)
     
-
+    # 9 - ATUALIZAR POPULAÇÃO - - - - - - - - - - - - - - - - - - - - - - - - #
+    
+    # Mostrar população ao final da geração.
+    
+# 10 - MELHORES SOLUÇÕES - - - - - - - - - - - - - - - - - - - - - - - - - - #
+    
+# Mostrar a população final.
+# Mostrar um top 3 das melhores soluções, usando a decodifica_mochila().
+    
 
 
         

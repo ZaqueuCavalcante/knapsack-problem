@@ -1,11 +1,19 @@
 # -*- coding: utf-8 -*-
 import matplotlib.pyplot as plt
+# Para exibir as figuras em uma janela separada.
+plt.style.use('ggplot')
+#plt.rcParams.update({'font.size': 16})
+plt.figure(figsize=(12, 8))
 
-def plot_espaco_busca(valores_mochilas, pesos_mochilas, peso_max, titulo):
+def plot_espaco_busca(valores_mochilas, pesos_mochilas, peso_max, titulo, geracao):
     # Plota a população em um gráfico de espalhamento.
     
-    plt.rcParams.update({'font.size': 16})
-    plt.figure(figsize=(6, 4))
+
+    
+   
+    plt.subplot(5,5,geracao)
+    
+
     
     for i in range(0, len(pesos_mochilas)):
         if (pesos_mochilas[i] <= peso_max):
