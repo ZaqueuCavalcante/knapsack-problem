@@ -63,7 +63,7 @@ peso_max = sum(pesos)    # Peso máximo (mochila com todos os objetos).
 # 2 - GERAÇÃO DA POPULAÇÃO INICIAL - - - - - - - - - - - - - - - - - - - - - #
 
 tamanho_populacao = 100
-peso_limite = 4.5    # Peso limite de uma mochila válida.
+peso_limite = 6.5    # Peso limite de uma mochila válida.
 
 populacao = gera_populacao_inicial(tamanho_populacao, n_objetos)
 

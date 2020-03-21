@@ -11,7 +11,7 @@ def funcao_objetivo(valores_mochilas, pesos_mochilas, valor_max, peso_max):
         if (pesos_mochilas[i] <= peso_max):
             auxiliar = pesos_mochilas[i]/peso_max
         else:
-            auxiliar = - 0.8
+            auxiliar = - 2.0
         aptidao = valores_mochilas[i]/valor_max + auxiliar
         aptidoes.append(aptidao)
             
