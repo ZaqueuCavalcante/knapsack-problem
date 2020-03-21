@@ -6,9 +6,10 @@ Date: 14/03/2020
 """
 
 from gera_populacao_inicial import gera_populacao_inicial
-from calcula_valor_populacao import calcula_valor_populacao
-from calcula_peso_populacao import calcula_peso_populacao
+from calcula_valores_populacao import calcula_valores_populacao
+from calcula_pesos_populacao import calcula_pesos_populacao
 from plot_espaco_busca import plot_espaco_busca
+
 from funcao_objetivo import funcao_objetivo
 from plot_funcao_objetivo import plot_funcao_objetivo
 from decodifica_mochila import decodifica_mochila
@@ -17,6 +18,8 @@ from seleciona_pais import seleciona_pais
 from cruzamento import cruzamento
 from seleciona_mutantes import seleciona_mutantes
 from realiza_mutacao import realiza_mutacao
+
+from print_lista import print_lista
 
 # 1 - REPRESENTAÇÃO DE CADA INDIVÍDUO - - - - - - - - - - - - - - - - - - - - # 
 
@@ -44,7 +47,10 @@ nomes, valores, pesos  = [], [], []
 for i in range(0, n_objetos):
     nomes.append(objetos[i][0])   
     valores.append(objetos[i][1]) 
-    pesos.append(objetos[i][2])   
+    pesos.append(objetos[i][2])  
+
+valor_max = sum(valores)    # Valor máximo (mochila com todos os objetos).
+peso_max = sum(pesos)    # Peso máximo (mochila com todos os objetos).
 
 # Cada indivíduo será representado através de uma lista, na qual:
     # 0 -> indica que o objeto não está presente na mochila.
@@ -55,31 +61,32 @@ for i in range(0, n_objetos):
 
 # 2 - GERAÇÃO DA POPULAÇÃO INICIAL - - - - - - - - - - - - - - - - - - - - - #
 
-tamanho_populacao = 25
-peso_max = 6.5    # Peso máximo de uma mochila válida.
-valor_max = sum(valores)    # Valor máximo (mochila com todos os objetos).
+tamanho_populacao = 100
+peso_limite = 6.5    # Peso limite de uma mochila válida.
 
-populacao_inicial = gera_populacao_inicial(tamanho_populacao, n_objetos)
+populacao = gera_populacao_inicial(tamanho_populacao, n_objetos)
 
-# 3 - AVALIAÇÃO DA APTIDÃO DA POPULAÇÃO INICIAL - - - - - - - - - - - - - - - #
+# 3 - CICLO EVOLUTIVO - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-t = 'Espaço de Busca - População Inicial'
-valores_mochilas = calcula_valor_populacao(populacao_inicial, valores)
-pesos_mochilas = calcula_peso_populacao(populacao_inicial, pesos)
-plot_espaco_busca(valores_mochilas, pesos_mochilas, peso_max, t, 1)
+n_geracoes = 20    # Número máximo de gerações (critério de parada).
 
-t = 'Função Objetivo - População Inicial'
-aptidoes = funcao_objetivo(valores_mochilas,pesos_mochilas,valor_max,peso_max)
-#plot_funcao_objetivo(valores_mochilas, pesos_mochilas, aptidoes, peso_max, t)
-
-# 4 - CICLO EVOLUTIVO - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-
-populacao = populacao_inicial
-n_geracoes = 26    # Número máximo de gerações (critério de parada).
 prob_mutacao = 5    # Probabilidade de ocorrer mutação, em %.
 taxa_mutacao = 50    # Quantidade de genes que sofrerão mutação, em %.
 
-for geracao in range(2, n_geracoes):
+for geracao in range(1, n_geracoes+1):
+    
+    # 4 - AVALIAÇÃO DA APTIDÃO DA POPULAÇÃO ATUAL - - - - - - - - - - - - - - #
+
+    t = 'Espaço de Busca - Geração ' + str(geracao)
+    valores_mochilas = calcula_valores_populacao(populacao, valores)
+    pesos_mochilas = calcula_pesos_populacao(populacao, pesos)
+    plot_espaco_busca(valores_mochilas, valor_max, pesos_mochilas, peso_limite, 
+                      peso_max, t)
+    
+    t = 'Função Objetivo - Geração ' + str(geracao)
+    aptidoes = funcao_objetivo(valores_mochilas, pesos_mochilas, valor_max, 
+                               peso_limite)
+    #plot_funcao_objetivo(valores_mochilas, pesos_mochilas, aptidoes, peso_max, t)
     
     # 5 - RANKING DE APTIDÃO - - - - - - - - - - - - - - - - - - - - - - - - #
     
@@ -87,39 +94,16 @@ for geracao in range(2, n_geracoes):
     # de aptidão (da maior para a menor).
 
     ranking = gera_ranking(aptidoes[:])
-    # Printa as 10 melhores mochilas.
-    """bests = ranking[0:10]
-    for best in bests:
-        print(valores_mochilas[best], '---', pesos_mochilas[best])"""
                 
     # 6 - SELEÇÃO DOS PAIS - - - - - - - - - - - - - - - - - - - - - - - - - #
-    
-    # Os pais que se reproduzirão para formar a próxima população serão 
-    # selecionados da seguinte forma:
-    # 1° + 2° colocados;
-    # 2° + 3° colocados;
-    # 3° + 4° colocados...
 
     pais = seleciona_pais(ranking)
-    #print('Pais : ')
-    #print(pais)
     
     # 7 - CRUZAMENTO - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
     
     # O método utilizado será o de 'recombinação com um ponto de corte'.
 
-    nova_populacao = cruzamento(populacao, pais)
-    
-    # Exibir nova população após cruzamento.
-    
-
-    t = 'Espaço de Busca - Geração ' + str(geracao)
-    valores_mochilas = calcula_valor_populacao(nova_populacao, valores)
-    pesos_mochilas = calcula_peso_populacao(nova_populacao, pesos)
-    plot_espaco_busca(valores_mochilas, pesos_mochilas, peso_max, t, geracao)
-    
-    
-    # Delay...
+    populacao = cruzamento(populacao, pais)
     
     # 8 - MUTAÇÃO - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
     

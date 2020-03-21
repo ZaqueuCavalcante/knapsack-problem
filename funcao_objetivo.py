@@ -9,7 +9,11 @@ def funcao_objetivo(valores_mochilas, pesos_mochilas, valor_max, peso_max):
     aptidoes = []
     
     for i in range(0, len(valores_mochilas)):
-        aptidao = valores_mochilas[i]#/valor_max + 2 * 1/(1+np.exp(pesos_mochilas[i]/peso_max))
+        if (pesos_mochilas[i] <= peso_max):
+            auxiliar = pesos_mochilas[i]/peso_max
+        else:
+            auxiliar = - 0.5
+        aptidao = valores_mochilas[i]/valor_max + auxiliar
         aptidoes.append(aptidao)
             
     return aptidoes

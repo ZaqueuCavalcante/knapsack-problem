@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import axes3d
 
 def plot_funcao_objetivo(valores_mochilas, pesos_mochilas, aptidoes, peso_max, titulo):
     # Plota a aptidão da mochila em função do seu valor e peso.
     
-    figura = plt.figure()
+    figura = plt.figure(figsize=(16, 10))
     quadro = figura.add_subplot(1, 1, 1)
     quadro = figura.gca(projection='3d')
     
@@ -24,6 +23,7 @@ def plot_funcao_objetivo(valores_mochilas, pesos_mochilas, aptidoes, peso_max, t
     plt.grid()
     # Traçar plano.
     #plt.axvline(x=peso_max, color='y')
-    #plt.text(peso_max, 150, ' Peso \n máximo')
-    plt.show()   
+    #plt.text(peso_max, 150, ' Peso \n máximo')    
+    plt.show()  
+    
     
