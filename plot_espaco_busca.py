@@ -5,6 +5,7 @@ def plot_espaco_busca(valores_mochilas, valor_max, pesos_mochilas, peso_limite, 
     # Plota a população em um gráfico de espalhamento.
         
     plt.figure(figsize=(16, 10))
+    plt.subplot(121)
     
     for i in range(0, len(pesos_mochilas)):
         if (pesos_mochilas[i] <= peso_limite):

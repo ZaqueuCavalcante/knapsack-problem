@@ -14,12 +14,9 @@ from plot_funcao_objetivo import plot_funcao_objetivo
 from gera_ranking import gera_ranking
 from seleciona_pais import seleciona_pais
 from cruzamento import cruzamento
-
 from seleciona_mutantes import seleciona_mutantes
 from realiza_mutacao import realiza_mutacao
-
 from decodifica_mochila import decodifica_mochila
-
 from print_lista import print_lista
 
 # 1 - REPRESENTAÇÃO DE CADA INDIVÍDUO - - - - - - - - - - - - - - - - - - - - # 
@@ -69,7 +66,7 @@ populacao = gera_populacao_inicial(tamanho_populacao, n_objetos)
 
 # 3 - CICLO EVOLUTIVO - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-n_geracoes = 30    # Número máximo de gerações (critério de parada).
+n_geracoes = 25    # Número máximo de gerações (critério de parada).
 
 prob_mutacao = 10    # Probabilidade de ocorrer mutação, em %.
 taxa_mutacao = 5    # Quantidade de genes que sofrerão mutação, em %.
@@ -87,7 +84,7 @@ for geracao in range(1, n_geracoes+1):
     t = 'Função Objetivo - Geração ' + str(geracao)
     aptidoes = funcao_objetivo(valores_mochilas, pesos_mochilas, valor_max, 
                                peso_limite)
-    #plot_funcao_objetivo(valores_mochilas, pesos_mochilas, aptidoes, peso_max, t)
+    plot_funcao_objetivo(valores_mochilas, pesos_mochilas, aptidoes, peso_max, t)
     
     # 5 - RANKING DE APTIDÃO - - - - - - - - - - - - - - - - - - - - - - - - #
     
