@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
 
 def plot_funcao_objetivo(valores_mochilas, pesos_mochilas, aptidoes, peso_max, titulo):
