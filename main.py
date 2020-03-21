@@ -9,17 +9,16 @@ from gera_populacao_inicial import gera_populacao_inicial
 from calcula_valores_populacao import calcula_valores_populacao
 from calcula_pesos_populacao import calcula_pesos_populacao
 from plot_espaco_busca import plot_espaco_busca
-
 from funcao_objetivo import funcao_objetivo
 from plot_funcao_objetivo import plot_funcao_objetivo
-from decodifica_mochila import decodifica_mochila
 from gera_ranking import gera_ranking
 from seleciona_pais import seleciona_pais
 from cruzamento import cruzamento
+
 from seleciona_mutantes import seleciona_mutantes
 from realiza_mutacao import realiza_mutacao
 
-from print_lista import print_lista
+from decodifica_mochila import decodifica_mochila
 
 # 1 - REPRESENTAÇÃO DE CADA INDIVÍDUO - - - - - - - - - - - - - - - - - - - - # 
 
@@ -68,10 +67,10 @@ populacao = gera_populacao_inicial(tamanho_populacao, n_objetos)
 
 # 3 - CICLO EVOLUTIVO - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-n_geracoes = 20    # Número máximo de gerações (critério de parada).
+n_geracoes = 30    # Número máximo de gerações (critério de parada).
 
-prob_mutacao = 5    # Probabilidade de ocorrer mutação, em %.
-taxa_mutacao = 50    # Quantidade de genes que sofrerão mutação, em %.
+prob_mutacao = 10    # Probabilidade de ocorrer mutação, em %.
+taxa_mutacao = 5    # Quantidade de genes que sofrerão mutação, em %.
 
 for geracao in range(1, n_geracoes+1):
     
@@ -109,17 +108,13 @@ for geracao in range(1, n_geracoes+1):
     
     # Consiste em mudar, aleatoriamente, alguma característica do indivíduo.
     # No caso, algumas mochilas (dentro da nova população) serão selecionadas. 
-    # Cada uma delas terá um objeto retirado ou adicionado.
+    # Cada uma delas terá UM objeto retirado ou adicionado.
     
-    #mutantes = seleciona_mutantes(nova_populacao, prob_mutacao)
+    mutantes = seleciona_mutantes(populacao, prob_mutacao)
     
-    #nova_populacao_2 = realiza_mutacao(nova_populacao, mutantes, taxa_mutacao)
-    
-    # 9 - ATUALIZAR POPULAÇÃO - - - - - - - - - - - - - - - - - - - - - - - - #
-    
-    # Mostrar população ao final da geração.
-    
-# 10 - MELHORES SOLUÇÕES - - - - - - - - - - - - - - - - - - - - - - - - - - #
+    populacao = realiza_mutacao(populacao, mutantes, taxa_mutacao)
+        
+# 9 - MELHORES SOLUÇÕES - - - - - - - - - - - - - - - - - - - - - - - - - - - #
     
 # Mostrar a população final.
 # Mostrar um top 3 das melhores soluções, usando a decodifica_mochila().
