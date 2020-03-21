@@ -14,7 +14,7 @@ def plot_espaco_busca(valores_mochilas, valor_max, pesos_mochilas, peso_limite, 
     
     plt.title(titulo, fontweight="bold") 
     plt.xlabel('Pesos (kg)')
-    plt.xlim(0,peso_max)
+    plt.xlim(0, peso_max)
     plt.ylabel('Valores (R$)')
     plt.ylim(0,valor_max)
     plt.grid()

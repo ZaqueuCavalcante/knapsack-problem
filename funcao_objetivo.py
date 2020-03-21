@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import numpy as np
 
 def funcao_objetivo(valores_mochilas, pesos_mochilas, valor_max, peso_max):
     # Calcula a aptidao da população como solução do problema.
@@ -12,7 +11,7 @@ def funcao_objetivo(valores_mochilas, pesos_mochilas, valor_max, peso_max):
         if (pesos_mochilas[i] <= peso_max):
             auxiliar = pesos_mochilas[i]/peso_max
         else:
-            auxiliar = - 0.5
+            auxiliar = - 0.8
         aptidao = valores_mochilas[i]/valor_max + auxiliar
         aptidoes.append(aptidao)
             

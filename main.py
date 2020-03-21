@@ -20,6 +20,8 @@ from realiza_mutacao import realiza_mutacao
 
 from decodifica_mochila import decodifica_mochila
 
+from print_lista import print_lista
+
 # 1 - REPRESENTAÇÃO DE CADA INDIVÍDUO - - - - - - - - - - - - - - - - - - - - # 
 
 # Lista de objetos que podem ser adicionados à mochila, cada qual com 
@@ -61,7 +63,7 @@ peso_max = sum(pesos)    # Peso máximo (mochila com todos os objetos).
 # 2 - GERAÇÃO DA POPULAÇÃO INICIAL - - - - - - - - - - - - - - - - - - - - - #
 
 tamanho_populacao = 100
-peso_limite = 6.5    # Peso limite de uma mochila válida.
+peso_limite = 4.5    # Peso limite de uma mochila válida.
 
 populacao = gera_populacao_inicial(tamanho_populacao, n_objetos)
 
@@ -116,8 +118,11 @@ for geracao in range(1, n_geracoes+1):
         
 # 9 - MELHORES SOLUÇÕES - - - - - - - - - - - - - - - - - - - - - - - - - - - #
     
-# Mostrar a população final.
-# Mostrar um top 3 das melhores soluções, usando a decodifica_mochila().
+melhor_mochila = populacao[ranking[0]]
+mochila_decodificada = decodifica_mochila(melhor_mochila, nomes, valores, pesos)
+print('$ Melhor mochila $')
+print('-> Itens: ')
+print_lista(mochila_decodificada)
     
 
 
