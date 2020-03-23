@@ -11,8 +11,8 @@ def seleciona_pais(ranking):
     
     # Os parâmetros a seguir controlam o comportamento da função de 
     # probabilidade.
-    p_max = 0.90    # Prob. da primeira mochila do ranking ser escolhida.
-    p_min = 0.10    # Prob. de última mochila ser escolhida. 
+    p_max = 0.999    # Prob. da primeira mochila do ranking ser escolhida.
+    p_min = 0.001    # Prob. de última mochila ser escolhida. 
         
     pais_selecionados = []
     prob_selecao = []

@@ -59,14 +59,14 @@ peso_max = sum(pesos)    # Peso máximo (mochila com todos os objetos).
 
 # 2 - GERAÇÃO DA POPULAÇÃO INICIAL - - - - - - - - - - - - - - - - - - - - - #
 
-tamanho_populacao = 100
+tamanho_populacao = 200
 peso_limite = 6.5    # Peso limite de uma mochila válida.
 
 populacao = gera_populacao_inicial(tamanho_populacao, n_objetos)
 
 # 3 - CICLO EVOLUTIVO - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-n_geracoes = 25    # Número máximo de gerações (critério de parada).
+n_geracoes = 10    # Número máximo de gerações (critério de parada).
 
 prob_mutacao = 10    # Probabilidade de ocorrer mutação, em %.
 taxa_mutacao = 5    # Quantidade de genes que sofrerão mutação, em %.
@@ -121,6 +121,4 @@ print('$ Melhor mochila $')
 print('-> Itens: ')
 print_lista(mochila_decodificada)
     
-
-
         

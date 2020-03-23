@@ -25,4 +25,3 @@ def plot_funcao_objetivo(valores_mochilas, pesos_mochilas, aptidoes, peso_max, t
     #plt.axvline(x=peso_max, color='y')
     #plt.text(peso_max, 150, ' Peso \n máximo')    
     plt.show()  
-    
