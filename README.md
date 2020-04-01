@@ -10,12 +10,13 @@ Normalmente este problema é resolvido com programação dinâmica, obtendo ent�
 
 Aqui, utilizaremos um algoritmo genético simples para tentar resolver o problema.
 
-
+É possível acompanhar a evolução das gerações ao longo da execução do programa. 
 
 
 > Computadores fazem arte, artistas fazem dinheiro.
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgzMTg2OTQyOSwtNzExODU0MzMxXX0=
+eyJoaXN0b3J5IjpbMTc5MzM2NjM0MCwtODMxODY5NDI5LC03MT
+E4NTQzMzFdfQ==
 -->
