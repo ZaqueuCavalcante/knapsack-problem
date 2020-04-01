@@ -10,13 +10,15 @@ Normalmente este problema é resolvido com programação dinâmica, obtendo ent�
 
 Aqui, utilizaremos um algoritmo genético simples para tentar resolver o problema.
 
-É possível acompanhar a evolução das gerações ao longo da execução do programa. 
+É possível acompanhar a evolução das gerações ao longo da execução do programa, como ilustrado a seguir.
+
+GIF DO PROGRAMA RODANDO.
 
 
 > Computadores fazem arte, artistas fazem dinheiro.
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc5MzM2NjM0MCwtODMxODY5NDI5LC03MT
-E4NTQzMzFdfQ==
+eyJoaXN0b3J5IjpbLTE0MTc2MzU0ODQsLTgzMTg2OTQyOSwtNz
+ExODU0MzMxXX0=
 -->
