@@ -1,6 +1,6 @@
-# Problem
+# Problema da Mochila Binária
 
-Resolução do Problema da Mochila usando um algortimo genético em Python.
+Resolução do Problema da Mochila usando um algoritmo genético em Python.
 
 zcvzdv
 
@@ -11,5 +11,5 @@ zcvzdv
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MzczMTQ5NjRdfQ==
+eyJoaXN0b3J5IjpbLTcxMTg1NDMzMV19
 -->
