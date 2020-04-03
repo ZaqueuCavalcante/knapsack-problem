@@ -12,12 +12,11 @@ Aqui, utilizaremos um algoritmo genético simples para tentar resolver o problem
 
 É possível acompanhar a evolução das gerações ao longo da execução do programa, como ilustrado a seguir.
 
-![Gif das gerações](imagens/gif.GIF)
+<img src='imagens/gif.gif' width='600'>
 
 Ao final, a melhor mochila é exibida.
 
-![Melhor mochila](imagens/best_mochila.PNG)
-
+<img src='imagens/best_mochila.PNG' width='300'>
 
 > Computadores fazem arte, artistas fazem dinheiro.
 
